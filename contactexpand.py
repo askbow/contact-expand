@@ -5,10 +5,11 @@
 import csv
 
 def LoadContacts():
-    contactsReader = csv.DictReader(open(r'contacts.csv'))
     userlist = list()
-    for row in contactsReader:
-        userlist.append((row['Contact ID'] , row['Contact Domain'],row['Nickname'],row['Group Name'] ))
+    with open(r'contacts.csv') as csvfile:
+        contactsReader = csv.DictReader(csvfile)
+        for row in contactsReader:
+            userlist.append((row['Contact ID'] , row['Contact Domain'],row['Nickname'],row['Group Name'] ))
     return userlist
 
 def genFull(resultwriter=None, userlist=None):
